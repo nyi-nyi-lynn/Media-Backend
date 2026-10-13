@@ -7,7 +7,7 @@ import {
   validateToken,
 } from "../utils/facade.js";
 
-export const userRouter = express.Router();
+const userRouter = express.Router();
 
 userRouter.post(
   "/register",
@@ -28,4 +28,10 @@ userRouter.get(
   validateRole(0),
   UserController.getSingleUser,
 );
-userRouter.post("/changeRole",validateToken,validateRole(0),UserController.changeRole);
+userRouter.post(
+  "/changeRole",
+  validateToken,
+  validateRole(0),
+  UserController.changeRole,
+);
+export default userRouter;

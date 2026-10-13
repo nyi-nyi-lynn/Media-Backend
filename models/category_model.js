@@ -1,9 +1,11 @@
-import { mongoose, Schema } from "./db";
+import { mongoose, Schema } from "./db.js";
 
 const CategorySchema = new Schema({
-    name : {type : String,unique : true,null: false},
-    image : {type : String},
-    desc : {type :String}
+  name: { type: String, unique: true, null: false },
+  image: { type: String },
+  desc: { type: String },
 });
 
-export const Category = mongoose.model("categories", CategorySchema);
+const Category = mongoose.model("categories", CategorySchema);
+
+export default Category;

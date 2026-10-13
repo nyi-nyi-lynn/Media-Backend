@@ -1,6 +1,9 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const getFilePath = (filename) =>
   path.join(__dirname, "../public/images/" + filename);
 const getImageLink = (filename) => `${process.env.IMAGE_PATH}/${filename}`;
@@ -19,7 +22,7 @@ const saveSingleFile = (req, res, next) => {
       req.body["image"] = shareSaveFile(req.files.file);
       next();
     } else {
-      new Error("no file");
+      next(new Error("no file"));
     }
   } else {
     next(new Error("No file"));

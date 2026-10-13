@@ -3,7 +3,8 @@ import express from "express";
 import mongoose from "mongoose";
 import { configDotenv } from "dotenv";
 import expressFileUpload from "express-fileupload";
-import { userRouter } from "./routes/user_route.js";
+import userRouter from "./routes/user_route.js";
+import categoryRouter from "./routes/category_route.js";
 
 configDotenv({ path: ".env" });
 const app = express();
@@ -18,6 +19,7 @@ app.use(express.static("public"));
 app.use(expressFileUpload());
 app.use(express.json());
 app.use("/users", userRouter);
+app.use("/cats",categoryRouter);
 
 app.use((error, req, res, next) => {
   error.status = error.status || 400;
