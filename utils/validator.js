@@ -11,7 +11,7 @@ const validateToken = (req, res, next) => {
         if (err.message == "jwt expired") {
           return next(new Error("Session Expired"));
         } else {
-          return new new Error("Authorization Error")();
+          return next(new Error("Authorization Error"));
         }
       } else {
         let userid = decoded.id;

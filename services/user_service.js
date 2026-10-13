@@ -43,12 +43,21 @@ const UserService = {
     let paginateLimit = 3;
     let users = await model
       .find({
-        $or : {'role' : 1, 'role': 2}
+        $or: [{ role: 1, role: 2 }],
       })
       .skip(userIndex * paginateLimit)
-      .sort({'created' : -1})
+      .sort({ created: -1 })
       .limit(userIndex);
     return users;
+  },
+
+  getSingleUser: async (userid) => {
+    let user = await model.findById(userid);
+    return user;
+  },
+
+  changeRole: async (userid, role) => {
+    await model.findByIdAndUpdate(userid, { role });
   },
 };
 export default UserService;

@@ -63,10 +63,31 @@ const UserController = {
     Msg(res, "Get me", { userid, user });
   },
 
-  getUsers: async(req, res, next) => {
+  getUsers: async (req, res, next) => {
     const userIndex = req.params.index;
     let users = await UserService.getUsers(userIndex);
-    Msg(res,`All User with Paginated index ${userIndex}`,users);
+    Msg(res, `All User with Paginated index ${userIndex}`, users);
+  },
+
+  getSingleUser: async (req, res, next) => {
+    let userid = req.params.userid;
+    let user = await UserService.getSingleUser(userid);
+    if (!user) {
+      return next(new Error("User not found"));
+    }
+    Msg(res, "Founded User", user);
+  },
+
+  changeRole: async (req, res, next) => {
+    let userid = req.body.userid;
+    let role = req.body.role;
+    console.log("user id and role", userid, role);
+    let user = await UserService.getById(userid);
+    if (!user) {
+      next(new Error("User not found"));
+    }
+    await UserService.changeRole(userid, role);
+    Msg(res, "Role Changed");
   },
 };
 
