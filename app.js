@@ -7,6 +7,7 @@ import UserRouter from "./routes/user_route.js";
 import CategoryRouter from "./routes/category_route.js";
 import TagRouter from "./routes/tag_route.js";
 import PostRouter from "./routes/post_route.js";
+import CommentRouter from "./routes/comment_route.js";
 
 configDotenv({ path: ".env" });
 const app = express();
@@ -24,6 +25,7 @@ app.use("/users", UserRouter);
 app.use("/cats", CategoryRouter);
 app.use("/tags", TagRouter);
 app.use("/posts",PostRouter);
+app.use("/comments",CommentRouter);
 
 app.use((error, req, res, next) => {
   error.status = error.status || 400;
