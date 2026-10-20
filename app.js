@@ -6,6 +6,7 @@ import expressFileUpload from "express-fileupload";
 import UserRouter from "./routes/user_route.js";
 import CategoryRouter from "./routes/category_route.js";
 import TagRouter from "./routes/tag_route.js";
+import PostRouter from "./routes/post_route.js";
 
 configDotenv({ path: ".env" });
 const app = express();
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use("/users", UserRouter);
 app.use("/cats", CategoryRouter);
 app.use("/tags", TagRouter);
+app.use("/posts",PostRouter);
 
 app.use((error, req, res, next) => {
   error.status = error.status || 400;
