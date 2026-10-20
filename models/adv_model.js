@@ -1,9 +1,12 @@
-import { mongoose, Schema } from "./db";
+import { mongoose, Schema } from "./db.js";
 
 const advSchema = new Schema({
   image: { type: String },
-  status: { type: String, enum: ["PROCESSING", "ACTIVE", "IDEL"] },
+  content: { type: String, required: true },
+  status: { type: String, enum: ["PROCESSING", "ACTIVE", "IDEL"],default : "PROCESSING" },
   created: { type: Date, default: Date.now },
 });
 
-export const Adv = mongoose.model("advs", advSchema);
+const Adv = mongoose.model("advs", advSchema);
+
+export default Adv;
