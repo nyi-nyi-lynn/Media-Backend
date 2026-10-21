@@ -6,6 +6,10 @@ const AdvController = {
     let result = await AdvService.all();
     Msg(res, "All Advertisements", result);
   },
+  allActives: async (req, res, next) => {
+    let result = await AdvService.allActives();
+    Msg(res, "All active advs", result);
+  },
   add: async (req, res, next) => {
     let obj = {
       image: req.body.image,

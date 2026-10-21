@@ -9,6 +9,7 @@ import TagRouter from "./routes/tag_route.js";
 import PostRouter from "./routes/post_route.js";
 import CommentRouter from "./routes/comment_route.js";
 import AdvRouter from "./routes/adv_route.js";
+import ApiRouter from "./routes/api_route.js";
 
 configDotenv({ path: ".env" });
 const app = express();
@@ -28,6 +29,7 @@ app.use("/tags", TagRouter);
 app.use("/posts", PostRouter);
 app.use("/comments", CommentRouter);
 app.use("/advs", AdvRouter);
+app.use("/apis", ApiRouter);
 
 app.use((error, req, res, next) => {
   error.status = error.status || 400;

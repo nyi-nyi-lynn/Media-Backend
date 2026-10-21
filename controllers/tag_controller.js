@@ -10,7 +10,7 @@ const TagController = {
   getSingle: async (req, res, next) => {
     let id = req.params.id;
     let tag = await Service.getById(id);
-    return tag;
+    Msg(res,"Single Tag",tag);
   },
   post: async (req, res, next) => {
     let name = req.body.name.toLowerCase();

@@ -12,6 +12,16 @@ const AdvService = {
       return advs;
     }
   },
+  allActives : async()=> {
+    let advs = null;
+    try{
+      advs = await AdvModel.find({status : "ACTIVE"});
+    }catch(error){
+      console.log("Error at get all active advs");
+    }finally{
+      return advs;
+    }
+  },
   add: async (obj) => {
     let newAdv = null;
     try {
